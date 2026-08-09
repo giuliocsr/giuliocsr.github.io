@@ -14,9 +14,12 @@
   table { width: 100%; max-width: 760px; margin: 0 auto; }
   img { max-width: 100%; height: auto; }
   td { overflow-wrap: anywhere; }
-  .portrait { width: 210px; max-width: 100%; margin: 0 0 0.9em 0; }
+  .portrait { float: left; width: 210px; max-width: 100%; margin: 0 1.1em 0.5em 0; }
   .portrait img { display: block; width: 100%; height: auto; }
   .caption { font-size: 0.85em; line-height: 1.35; margin: 0.4em 0 0; }
+  @media (max-width: 560px) {
+    .portrait { float: none; margin: 0 0 0.9em 0; }
+  }
 </style>
 </head>
 <body>
