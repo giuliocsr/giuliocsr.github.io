@@ -4,41 +4,61 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Giulio Golinelli</title>
+<style>
+  /* The ONLY css on the page: let it reflow on small screens.
+     Every visual still comes from plain HTML; if css is disabled the
+     page renders exactly as a fixed 760px plain-HTML page. */
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; padding: 1em 1.25em; }
+  h1 { margin: 0 0 0.35em; }
+  table { width: 100%; max-width: 760px; margin: 0 auto; }
+  img { max-width: 100%; height: auto; }
+  td { overflow-wrap: anywhere; }
+  @media (max-width: 560px) {
+    img[align="left"] {
+      float: none;
+      display: block;
+      width: 160px;
+      max-width: 60%;
+      margin: 0 auto 0.8em;
+    }
+  }
+</style>
 </head>
 <body>
 
 <table align="center" width="760"><tr><td>
 
-<h1>Giulio Golinelli</h1>
-
-<img src="assets/profile.jpg" align="left" hspace="16" vspace="4"
+<img src="assets/profile.jpg" align="left" hspace="18" vspace="0"
      width="210" height="210" alt="Photo of Giulio Golinelli">
+<h1>Giulio Golinelli<br>
+<small>aka <a href="https://github.com/giuliocsr">giuliocsr</a> &mdash; pronounced "giulioceasar", like the emperor</small></h1>
 
 <p>
-I am a researcher and engineer working at the intersection of
+I am a researcher and engineer who likes the awkward intersection of
 <b>applied cryptography</b>, <b>hardware security</b>, and
-<b>quantitative machine learning</b>. I hold an M.Sc. in Computer Science
-and Engineering from the <a href="https://www.polimi.it/">Polytechnic of
-Milan</a> (2024) and a B.Sc. from the
-<a href="https://www.unibo.it/">University of Bologna</a> (2021); my
-Master's thesis on the side-channel analysis of SHA-256 won the national
-<a href="https://www.decifris.it/attivita/centotesi-2017-2024">DECIFRIS</a>
-award. I have worked on post-quantum secure processors, a post-quantum
-blockchain ledger, and real-world hardware side-channel cryptanalysis
-&mdash; so, professionally, I have spent time on both ends of paranoia.
+<b>machine learning</b> &mdash; roughly the overlap of three Venn diagrams
+nobody asked for. I hold an M.Sc. from the
+<a href="https://www.polimi.it/">Polytechnic of Milan</a> (2024) and a
+B.Sc. from the <a href="https://www.unibo.it/">University of Bologna</a>
+(2021); my thesis on the side-channel analysis of SHA-256 somehow won the
+national <a href="https://www.decifris.it/attivita/centotesi-2017-2024">DECIFRIS</a>
+award. And yes, the handle <b>giuliocsr</b> nods to the great emperor of
+the Roman Empire &mdash; who has since retired to his
+<a href="https://en.wikipedia.org/wiki/Caesars_Palace">palace in Las Vegas</a>.
 </p>
 
 <p>
-Lately my hobby of choice has been
-<b>distributionally robust deep reinforcement learning</b> for finance:
-teaching trading agents to hedge against the worst-case market, which so
-far makes them more disciplined investors than I am.
-</p>
-
-<p>
-I am based in Texas, return to Italy often enough to keep my coffee
-standards uncompromising, and have also lived in Singapore &mdash; so my
-spice tolerance now comfortably outranks my patience for slow compilers.
+I have helped design post-quantum secure processors (RISC-V cores chatting
+with lattice-signature accelerators), contributed to a post-quantum
+blockchain ledger that actually shipped &mdash; it even has my name on two
+patents I still find suspicious &mdash; and coaxed secrets out of real
+silicon with an oscilloscope and stubbornness. As a hobby I torment trading
+agents with <b>distributionally robust reinforcement learning</b> until
+they hedge against markets more sensibly than I do. I am based in Texas,
+return to Italy often enough to defend my coffee honor, and have also lived
+in Singapore, where my spice tolerance learned to outrank my patience for
+slow compilers.
 </p>
 
 <p>
