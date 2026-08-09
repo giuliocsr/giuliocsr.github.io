@@ -14,25 +14,32 @@
   table { width: 100%; max-width: 760px; margin: 0 auto; }
   img { max-width: 100%; height: auto; }
   td { overflow-wrap: anywhere; }
-  @media (max-width: 560px) {
-    img[align="left"] {
-      float: none;
-      display: block;
-      width: 160px;
-      max-width: 60%;
-      margin: 0 auto 0.8em;
-    }
-  }
+  .portrait { width: 210px; max-width: 100%; margin: 0 0 0.9em 0; }
+  .portrait img { display: block; width: 100%; height: auto; }
+  .caption { font-size: 0.85em; line-height: 1.35; margin: 0.4em 0 0; }
 </style>
 </head>
 <body>
 
 <table align="center" width="760"><tr><td>
 
-<img src="assets/profile.jpg" align="left" hspace="18" vspace="0"
-     width="210" height="210" alt="Photo of Giulio Golinelli">
-<h1>Giulio Golinelli<br>
-<small>aka <a href="https://github.com/giuliocsr">giuliocsr</a> &mdash; pronounced "giulioceasar", like the emperor</small></h1>
+<h1>Giulio Golinelli &mdash; <a href="https://github.com/giuliocsr">giuliocsr</a></h1>
+
+<div class="portrait">
+<img src="assets/profile.jpg" width="210" height="210"
+     alt="Giulio Golinelli on his graduation day">
+<p class="caption">On my graduation day, crowned with the Italian
+<i>ghirlanda d'alloro</i> &mdash; a
+<a href="https://en.wikipedia.org/wiki/Laurel_wreath">laurel wreath</a>
+that graduates receive as a symbol of culture, knowledge, and wisdom, in
+the footsteps of Dante and Petrarch.</p>
+</div>
+
+<p>
+You can call me <b>giuliocsr</b> (pronounced "giulioceasar") &mdash; a nod
+to Julius Caesar, the great emperor who now lives in his
+<a href="https://en.wikipedia.org/wiki/Caesars_Palace">palace in Las Vegas</a>.
+</p>
 
 <p>
 I am a researcher and engineer who likes the awkward intersection of
@@ -43,9 +50,7 @@ nobody asked for. I hold an M.Sc. from the
 B.Sc. from the <a href="https://www.unibo.it/">University of Bologna</a>
 (2021); my thesis on the side-channel analysis of SHA-256 somehow won the
 national <a href="https://www.decifris.it/attivita/centotesi-2017-2024">DECIFRIS</a>
-award. And yes, the handle <b>giuliocsr</b> nods to the great emperor of
-the Roman Empire &mdash; who has since retired to his
-<a href="https://en.wikipedia.org/wiki/Caesars_Palace">palace in Las Vegas</a>.
+award.
 </p>
 
 <p>
