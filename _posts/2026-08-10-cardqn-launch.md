@@ -1,0 +1,79 @@
+---
+layout: default
+title: "CARDQN"
+---
+<p align="center"><img src="/assets/blog/cardqn-logo.png" alt="CARDQN"></p>
+
+*Context-Aware Distributionally Robust Deep Q-Learning — a robust trading agent that hedges hard when uncertain and commits when confident.*
+
+Robust trading agents hedge against the worst plausible market move — safe, but on
+the S&P 500 they finish at ~2–3× while buy-and-hold earns **9.5×**. **CARDQN** makes
+that hedge *context-aware*: it labels the market regime, scores how reliably its
+model predicts it, and tightens the safety margin only where that score is high.
+The result: **3.40× terminal wealth** — more than double the robust baseline — at
+roughly **2× the Sharpe and Sortino**.
+
+<figure><img src="/assets/blog/terminal-wealth.png" alt="Terminal wealth: CARDQN 3.40× vs RDQN 1.59× vs S&P 9.52×">
+<figcaption>End of training, 5 seeds: CARDQN <b>3.40×</b> vs RDQN <b>1.59×</b> vs S&P 500 buy & hold <b>9.52×</b>.</figcaption></figure>
+
+<figure><img src="/assets/blog/risk-metrics.png" alt="Risk metrics: Sharpe, Sortino, volatility, max drawdown">
+<figcaption>CARDQN roughly doubles RDQN's Sharpe and Sortino, at comparable volatility and drawdown.</figcaption></figure>
+
+# How it works
+
+Three pieces, all computed from past data only: a **regime tag** τ labels the market
+(trend, volatility, position — 27 regimes); a **fidelity score** φ measures
+out-of-sample predictability per regime; an **adaptive radius** ε̃ and **reference**
+P̃ tighten the ambiguity ball where φ is high, relax it where it's low.
+
+<figure><img src="/assets/blog/pipeline.png" alt="CARDQN pipeline">
+<figcaption>State → regime tag → fidelity → adaptive radius & reference → robust Bellman update.</figcaption></figure>
+
+## Links
+
+📄 **[Paper (PDF)](https://giuliocsr.github.io/papers/cardqn.pdf)** · 💻 **[Code (GitHub)](https://github.com/giuliocsr/CARDQN)** · ✍️ **[Explainer](https://giuliocsr.github.io/blog/cardqn-explained)**
+
+# FAQ
+
+### Does it beat buy & hold?
+No — 3.4× vs 9.5×. All agents train on a simulator and hit a sim-to-real ceiling.
+
+### What does "distributionally robust" mean?
+Don't trust one model — consider all nearby models and plan for the worst.
+
+### What is the context tag?
+A past-only label of the current market: trend (up/down/flat), volatility (low/mid/high), and position (near a recent high/low/interior) — 27 regimes in total.
+
+### What is the fidelity score?
+An out-of-sample measure of how reliably the model predicts each regime.
+
+### What is the proposed Bellman-target blend?
+A rule that de-hedges in favorable regimes. In the paper, not yet validated.
+
+### How is the system trained?
+On a signature-MMD market simulator — synthetic return paths fitted to S&P 500 data — then evaluated out-of-sample on the real S&P 500 (1995–2024, proportional transaction costs).
+
+### How long does training take?
+~10–14 minutes per episode on an RTX 2080 Ti GPU; a full 10-episode run takes about 2 hours.
+
+### Where is the full math?
+In the [paper](https://giuliocsr.github.io/papers/cardqn.pdf) and the [explainer](https://giuliocsr.github.io/blog/cardqn-explained).
+
+### What license?
+CC BY-NC-SA 4.0.
+
+## Cite
+
+```bibtex
+@misc{golinelli2026cardqn,
+  author = {Giulio Golinelli},
+  title  = {Context-Aware Distributionally Robust Deep {Q}-Learning ({CARDQN})},
+  year   = {2026},
+  url    = {https://giuliocsr.github.io/papers/cardqn.pdf},
+  note   = {Code: https://github.com/giuliocsr/CARDQN}
+}
+```
+
+---
+
+<small>© 2026 [giuliocsr](https://github.com/giuliocsr) · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) · **not investment advice**</small>

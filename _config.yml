@@ -1,0 +1,6 @@
+title: Giulio Golinelli
+description: Personal website
+markdown: kramdown
+kramdown:
+  input: GFM
+permalink: /blog/:title/
