@@ -2,6 +2,7 @@
 layout: default
 title: "CARDQN"
 description: "A context-aware robust trading agent that more than doubles the baseline wealth at better risk-adjusted return."
+date: 2026-08-10 10:00:00 +0000
 ---
 <p align="center"><img src="/assets/blog/cardqn-logo.png" alt="CARDQN"></p>
 
@@ -37,28 +38,34 @@ P̃ tighten the ambiguity ball where φ is high, relax it where it's low.
 # FAQ
 
 ### Does it beat buy & hold?
-No — 3.4× vs 9.5×. All agents train on a simulator and hit a sim-to-real ceiling.
+No — CARDQN reaches 3.4× vs buy-and-hold's 9.5×. Every agent here trains on a simulator and then evaluates on the real market; the synthetic data under-represents the S&P's long-term drift, creating a sim-to-real ceiling that caps all agents. CARDQN's claim is over the robust baseline (RDQN), not over the market — it delivers more wealth and better risk-adjusted return than the original robust method, while staying robust.
 
 ### What does "distributionally robust" mean?
-Don't trust one model — consider all nearby models and plan for the worst.
+Instead of trusting one fitted model of the market, you consider every model close to yours (inside an "ambiguity ball" of radius ε) and plan for the worst one. You trade as if the nastiest plausible market were the true one — so you're never caught off-guard by model error. The radius ε is your distrust budget: bigger means more robust but more pessimistic.
 
 ### What is the context tag?
-A past-only label of the current market: trend (up/down/flat), volatility (low/mid/high), and position (near a recent high/low/interior) — 27 regimes in total.
+A past-only label of the current market: trend (up/down/flat), volatility (low/mid/high), and position (near a recent high/low/interior) — 27 regimes in total. It's computed entirely from the recent return window, with no look-ahead at future prices. The volatility thresholds are frozen once on the full S&P history so a day's label doesn't drift as training proceeds.
 
 ### What is the fidelity score?
-An out-of-sample measure of how reliably the model predicts each regime.
+An out-of-sample measure of how reliably the model predicts each regime — high only when the regime is both well-sampled and genuinely predictable. It's scored on held-out transitions (not the data the model was fit on), so it measures true predictive accuracy, not in-sample overfit. This prevents the system from over-trusting a model that has merely memorized noise.
 
 ### What is the proposed Bellman-target blend?
-A rule that de-hedges in favorable regimes. In the paper, not yet validated.
+A complementary rule that de-hedges toward the risk-neutral objective in clearly favorable, well-identified regimes — by a confidence-gated, capped weight that provably never becomes optimistic. It's sketched in the paper but not yet validated empirically; the results on this page are CARDQN without it.
 
 ### How is the system trained?
-On a signature-MMD market simulator — synthetic return paths fitted to S&P 500 data — then evaluated out-of-sample on the real S&P 500 (1995–2024, proportional transaction costs).
+On a signature-MMD market simulator — synthetic return paths fitted to S&P 500 data — then evaluated out-of-sample on the real S&P 500 (1995–2024, proportional transaction costs). Each configuration runs across 5 random seeds to average out the per-seed variance inherent in deep RL training.
 
 ### How long does training take?
-~10–14 minutes per episode on an RTX 2080 Ti GPU; a full 10-episode run takes about 2 hours.
+~10–14 minutes per episode on an RTX 2080 Ti GPU; a full 10-episode run takes about 2 hours. A 5-seed campaign across two configurations (off vs full) runs overnight on a university HPC cluster under SLURM.
+
+### What markets does CARDQN trade?
+Currently the S&P 500 (1995–2024) as a single-asset portfolio: the agent chooses a weight from all-cash to all-in (and everything in between), rebalanced daily with 0.05% proportional transaction costs. The framework generalizes to any liquid asset with sufficient price history.
+
+### Can CARDQN be applied to other domains?
+Yes — the context-aware ambiguity idea isn't finance-specific. Anywhere you do robust sequential decision-making under a model you only partially trust (robotics, control, supply-chain optimization), the principle of "hedge hard when uncertain, commit when confident" applies directly. The regime tag, fidelity score, and adaptive radius are domain-agnostic machinery.
 
 ### Where is the full math?
-In the [paper](https://giuliocsr.github.io/papers/cardqn.pdf) and the [explainer](https://giuliocsr.github.io/blog/cardqn-explained).
+In the [paper](https://giuliocsr.github.io/papers/cardqn.pdf) and the [explainer post](https://giuliocsr.github.io/blog/cardqn-explained).
 
 ### What license?
 CC BY-NC-SA 4.0.
