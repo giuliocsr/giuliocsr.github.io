@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "CARDQN: teaching a cautious trading agent to read the room"
+description: "A ground-up explanation of CARDQN: why reinforcement learning, the ambiguity ball, the regime tag, the fidelity score, and the results."
 ---
 <!--
   Blog post — markdown + MathJax.

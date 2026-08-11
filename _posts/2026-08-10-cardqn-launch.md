@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "CARDQN"
+description: "A context-aware robust trading agent that more than doubles the baseline wealth at better risk-adjusted return."
 ---
 <p align="center"><img src="/assets/blog/cardqn-logo.png" alt="CARDQN"></p>
 
@@ -73,7 +74,3 @@ CC BY-NC-SA 4.0.
   note   = {Code: https://github.com/giuliocsr/CARDQN}
 }
 ```
-
----
-
-<small>© 2026 [giuliocsr](https://github.com/giuliocsr) · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) · **not investment advice**</small>
