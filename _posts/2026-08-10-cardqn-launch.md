@@ -38,34 +38,34 @@ P̃ tighten the ambiguity ball where φ is high, relax it where it's low.
 # FAQ
 
 ### Does it beat buy & hold?
-No — 3.4× vs 9.5×. All agents are trained on a simulator and hit a sim-to-real ceiling.
+No — 3.4× vs 9.5×. All agents are trained on a simulator and hit a sim-to-real ceiling; CARDQN's claim is over the robust baseline (RDQN), not over the market.
 
 ### What does "distributionally robust" mean?
-Don't trust one model — consider all nearby models and plan for the worst.
+Don't trust one model — consider all nearby models and plan for the worst. You trade as if the nastiest plausible market were the true one.
 
 ### What is the context tag?
-A past-only label with three components (trend, volatility, position), giving 27 regimes total. No look-ahead.
+A past-only label with three components (trend, volatility, position), giving 27 regimes total. Computed entirely from recent returns, with no look-ahead.
 
 ### What is the fidelity score?
-An out-of-sample measure of how reliably the model predicts each regime.
+An out-of-sample measure of how reliably the model predicts each regime. It's high only when the regime is well-sampled and genuinely predictable.
 
 ### What is the proposed Bellman-target blend?
-A rule that de-hedges in favorable regimes. Proposed in the paper, not yet validated.
+A rule that de-hedges toward the risk-neutral objective in favorable regimes, by a capped weight that never becomes optimistic. Proposed in the paper, not yet validated.
 
 ### How is the system trained?
-On a signature-MMD market simulator, then evaluated out-of-sample on the real S&P 500 (1995–2024). 5 random seeds per configuration.
+On a signature-MMD market simulator, then evaluated out-of-sample on the real S&P 500 (1995–2024, 0.05% transaction costs). Each configuration runs across 5 random seeds.
 
 ### How long does training take?
-~10–14 minutes per episode on an RTX 2080 Ti. A full 10-episode run takes about 2 hours.
+~10–14 minutes per episode on an RTX 2080 Ti. A full 10-episode run takes about 2 hours; a 5-seed campaign runs overnight.
 
 ### What markets does CARDQN trade?
-The S&P 500 (1995–2024), single-asset, daily rebalancing with 0.05% transaction costs.
+The S&P 500 (1995–2024), single-asset, daily rebalancing with proportional transaction costs. The framework generalizes to any liquid asset with sufficient price history.
 
 ### Can CARDQN be applied to other domains?
-Yes — the context-aware ambiguity idea is domain-agnostic and applies to robotics, control, and operations.
+Yes — the context-aware ambiguity idea is domain-agnostic and applies to robotics, control, and supply-chain optimization.
 
-### Where is the full math?
-In the [paper](https://giuliocsr.github.io/papers/cardqn.pdf) and the [explainer](https://giuliocsr.github.io/blog/cardqn-explained).
+### How does CARDQN compare to other strategies, and can it do high-frequency trading?
+CARDQN is a daily-rebalancing, position-level robust strategy — not HFT. It sits in the systematic/quantitative category alongside momentum and risk-parity, but is unique in its distributionally-robust formulation. Inference is a single forward pass through the Q-network (milliseconds), fast enough for daily or intraday use. Microsecond-scale HFT would require a different execution layer.
 
 ### What license?
 CC BY-NC-SA 4.0.
