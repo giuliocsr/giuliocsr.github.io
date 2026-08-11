@@ -30,9 +30,10 @@ img { max-width: 100%; height: auto; }
 .site-header h1 { margin: 0; font-size: 2em; }
 .site-header h1 a { text-decoration: none; color: inherit; }
 
-/* ── nav bar (squared, minimal padding, darker blue hover) ── */
+/* ── nav bar (squared, zero padding, gap between buttons, darker blue hover) ── */
+.navbar { display: flex; gap: 12px; }
 .navbar a {
-  font-weight: bold; padding: 0;
+  font-weight: bold; padding: 0; line-height: 1;
   text-decoration: none; color: inherit;
   border-radius: 0;
   font-size: 0.95em;
@@ -58,11 +59,11 @@ pre code { background: none; padding: 0; }
 
 /* ── site footer (every page) ── */
 .site-footer { max-width: 760px; margin: 0 auto; padding: 0 1.25em 0.5em; }
-.site-footer hr { border: none; border-top: 2px solid #ccc; margin: 1em 0 0.3em; }
+.site-footer hr { border: none; border-top: 2px solid #888; margin: 1em 0 0.3em; }
 
 /* ── responsive ── */
 @media (max-width: 560px) {
-  .portrait { float: none; margin: 0 0 0.9em 0; }
+  .portrait { float: none; margin: 0 auto 0.9em; text-align: center; }
   .site-header-inner { flex-direction: column; gap: 0.3em; }
 }
 </style>
